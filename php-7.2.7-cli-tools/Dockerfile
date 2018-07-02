@@ -1,4 +1,4 @@
-FROM php:7.2-cli-alpine
+FROM php:7.2.7-cli-alpine
 RUN  apk add --update \
         autoconf \
         build-base \
