@@ -28,3 +28,7 @@ RUN cd /usr/local \
     && ./configure \
     && make -j4 \
     && make install
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x wp-cli.phar \
+    && mv wp-cli.phar /usr/local/bin/wp \
+    && echo 'alias wp="wp --allow-root"' >> /etc/profile
