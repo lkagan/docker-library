@@ -10,6 +10,7 @@ RUN  apk add --update \
         clang \
         linux-headers \
         python \
+        rsync \
     && docker-php-ext-install mysqli pdo_mysql pdo \
     && pecl install redis-3.1.6 \
     && pecl install xdebug-2.6.0 
