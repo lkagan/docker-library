@@ -11,7 +11,9 @@ RUN  apk add --update \
         linux-headers \
         python \
         rsync \
-    && docker-php-ext-install mysqli pdo_mysql pdo \
+        libjpeg-turbo-dev \
+        libpng-dev \
+    && docker-php-ext-install mysqli pdo_mysql pdo opcache gd \
     && pecl install redis-3.1.6 \
     && pecl install xdebug-2.6.0 
 ADD https://getcomposer.org/download/1.6.3/composer.phar /usr/local/bin/composer
