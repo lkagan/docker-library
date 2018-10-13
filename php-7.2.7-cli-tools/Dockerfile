@@ -3,6 +3,7 @@ RUN  apk add --update \
         autoconf \
         build-base \
         automake \
+        msmtp \
         git \
         redis \
         mysql-client \
