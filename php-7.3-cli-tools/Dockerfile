@@ -15,13 +15,13 @@ RUN  apk add --update \
         libjpeg-turbo-dev \
         libpng-dev \
         libzip \
-        libzip-dev \
+        libzip-dev 
+RUN pecl install redis-3.1.6 \
+    && pecl install xdebug-2.7.2 \
+    && pecl install zip \
     && docker-php-ext-install mysqli pdo_mysql pdo opcache \
     && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd \
-    && pecl install redis-3.1.6 \
-    && pecl install xdebug-2.7.2 \
-    && pecl install zip
+    && docker-php-ext-install -j$(nproc) gd 
 ADD https://getcomposer.org/download/1.6.3/composer.phar /usr/local/bin/composer
 ADD https://phar.phpunit.de/phpunit-7.phar /usr/local/bin/phpunit
 RUN cd /usr/local \
@@ -41,3 +41,4 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp \
     && echo 'alias wp="wp --allow-root"' >> /etc/profile
+RUN docker-php-ext-install pcntl 
