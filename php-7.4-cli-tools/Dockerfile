@@ -1,4 +1,4 @@
-FROM php:7.3-cli-alpine
+FROM php:7.4-cli-alpine
 RUN  apk add --update \
         autoconf \
         build-base \
@@ -17,11 +17,10 @@ RUN  apk add --update \
         libzip \
         libzip-dev 
 RUN pecl install redis-3.1.6 \
-    && pecl install xdebug-2.7.2 \
-    && pecl install zip \
-    && docker-php-ext-install mysqli pdo_mysql pdo opcache \
-    && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd 
+    && pecl install xdebug-2.8.1 \
+    && pecl install zip 
+RUN docker-php-ext-configure gd -with-jpeg=/usr/include/ \
+    && docker-php-ext-install bcmath exif gd mysqli pdo pdo_mysql opcache pcntl
 ADD https://getcomposer.org/download/1.6.3/composer.phar /usr/local/bin/composer
 ADD https://phar.phpunit.de/phpunit-7.phar /usr/local/bin/phpunit
 RUN cd /usr/local \
@@ -41,5 +40,3 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp \
     && echo 'alias wp="wp --allow-root"' >> /etc/profile
-RUN docker-php-ext-install pcntl 
-RUN docker-php-ext-install bcmath

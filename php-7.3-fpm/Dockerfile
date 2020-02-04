@@ -13,3 +13,4 @@ RUN  apk add --update \
     && pecl install redis-3.1.6 \
     && pecl install xdebug-2.7.2 \
     && pecl install zip
+RUN docker-php-ext-install bcmath
