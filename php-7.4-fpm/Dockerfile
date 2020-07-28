@@ -7,6 +7,7 @@ RUN  apk add --update \
         libpng-dev \
         libzip \
         libzip-dev \
+        composer \
     && pecl install redis-3.1.6 \
     && pecl install zip \
     && pecl install xdebug-2.8.1 \
